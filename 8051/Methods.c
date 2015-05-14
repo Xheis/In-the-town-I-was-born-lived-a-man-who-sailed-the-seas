@@ -229,6 +229,7 @@ void PulseGeneration(void)
 	char signalRecieved = 0;
 	unsigned short timeStart = 0;
 	unsigned short timePassed = 0;
+	
 	for (i = 0; i < 4; i++)	//4 pulses
 	{
 		//Generate 40kHz pulse
@@ -246,6 +247,7 @@ void PulseGeneration(void)
 		{
 			//We got a signal
 			signalRecieved = 1;
+			SendUltrasonicTimes(timePassed);
 		}
 		else if (timePassed > TIMEOUT)
 		{
@@ -256,3 +258,16 @@ void PulseGeneration(void)
 	}
 }
 
+//Send stuff over the coms
+void SendUltrasonicTimes(int tempTime)
+{
+	//send over com port
+	// tempTime
+}
+
+void InitialiseUART
+{
+	//Vector is 0x0023 for UART
+	TI0 = 0x00; //This is our transmission complete interrupt.
+	RI0 = 0x00; //This is our receive complete interrupt, which we need.
+}
