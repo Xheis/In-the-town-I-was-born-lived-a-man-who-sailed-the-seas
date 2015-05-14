@@ -7,3 +7,8 @@ A3_XX.M51
 cyglink.txt
 *.#2
 tmp.out
+*.A51
+8051/Objects/STARTUP.obj
+*.obj
+8051/Objects/Assignment 2.build_log.htm
+*.uvproj
