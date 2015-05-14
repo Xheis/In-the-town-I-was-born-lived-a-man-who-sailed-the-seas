@@ -270,4 +270,6 @@ void InitialiseUART
 	//Vector is 0x0023 for UART
 	TI0 = 0x00; //This is our transmission complete interrupt.
 	RI0 = 0x00; //This is our receive complete interrupt, which we need.
+	/* NOTE: The software interrupts are not reset by hardware, so we must reset them manually. */
+	SCON0 = 0x
 }
