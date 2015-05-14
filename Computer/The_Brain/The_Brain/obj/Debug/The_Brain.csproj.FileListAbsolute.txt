@@ -1,0 +1,9 @@
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\bin\Debug\The_Brain.exe.config
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\bin\Debug\The_Brain.exe
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\bin\Debug\The_Brain.pdb
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.csprojResolveAssemblyReference.cache
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.Main_Form.resources
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.Properties.Resources.resources
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.csproj.GenerateResource.Cache
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.exe
+C:\Users\student\Documents\GitHub\Assign3\Computer\The_Brain\The_Brain\obj\Debug\The_Brain.pdb
