@@ -47,9 +47,6 @@ void main(void)
         Function:         General_Init
 
         Description:      Initialise ports, watchdog....
-
-        Revisions:
-
 --------------------------------------------------------------------------------------------------------------------*/
 void General_Init()
 {
@@ -67,8 +64,4 @@ void General_Init()
         Function:         Timer_Init
 
         Description:      
-
-        Revisions:
-
-
 */
