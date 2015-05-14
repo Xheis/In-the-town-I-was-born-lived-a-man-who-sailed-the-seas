@@ -12,3 +12,7 @@ tmp.out
 *.obj
 8051/Objects/Assignment 2.build_log.htm
 *.uvproj
+*.uvopt
+8051/Assignment 2.uvgui.Gamma
+8051/Objects/Assignment 2
+*.lnp

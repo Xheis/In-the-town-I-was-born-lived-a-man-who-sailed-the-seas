@@ -215,16 +215,6 @@ void millis_RESET(void){
 }
 
 
-/*--------------------------------------------------------------------------------------------------------------------
-        Function:         getOctave
-
-        Description:      Allows us to access Octave from within LCD.c
---------------------------------------------------------------------------------------------------------------------*/
-unsigned char getOctave(void){
-	return(octave);
-}
-
-
 
 
 /*--------------------------------------------------------------------------------------------------------------------
@@ -235,27 +225,27 @@ unsigned char getOctave(void){
 
 void PulseGeneration(void)
 {
-	char i=0;
-	char signalRecieved=0;
-	float timeStart = 0;
-	float timePassed = 0;
+	char i = 0;
+	char signalRecieved = 0;
+	unsigned short timeStart = 0;
+	unsigned short timePassed = 0;
 	for (i = 0; i < 4; i++)	//4 pulses
 	{
 		//Generate 40kHz pulse
 		//TODO: pwm code
 	}
-	delay(1)			//Pause for a masking time
+	delay(1);			//Pause for a masking time
 	
 	//Start timer
 	timeStart = millis();	//this is our starting time. We'll compare this time to current time to check for a time out
 	while (!signalRecieved)
 	{
-		timePassed = millis() - timeStart
+		timePassed = millis() - timeStart;
 		//Check to see if P0.1 is high
 		if (P0 ^ 3)
 		{
 			//We got a signal
-			signalrecieved = 1;
+			signalRecieved = 1;
 		}
 		else if (timePassed > TIMEOUT)
 		{
