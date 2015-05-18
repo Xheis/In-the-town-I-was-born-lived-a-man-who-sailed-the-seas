@@ -28,7 +28,7 @@ unsigned short millis(void);
 void millis_RESET(void);
 
 void blink(void);
-unsigned short micros(void);
+unsigned long micros(void);
 void update_micros(void);
 void reset_Timer_1(void);
 void delay_micro(unsigned short);
@@ -36,5 +36,7 @@ void delay_micro(unsigned short);
 void InitialiseUART();
 void SendUltrasonicTimes(unsigned short);
 void PulseGeneration(void);
+
+void servoWrite_microseconds(unsigned int);
 
 #endif

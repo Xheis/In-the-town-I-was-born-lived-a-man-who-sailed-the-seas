@@ -15,10 +15,11 @@
 //                              Declarations
 //--------------------------------------------------------------------------------------------------------------------
 
-#include "c8051F120.h"
+#include "Servo.h"
+#include "c8051f120.h"     // SFR declarations
 #include "A3_XX.h"
-#include "Methods.h"
 #include "LCD.h"
+#include "Methods.h"
 
 
 /*    Definitions    */
@@ -27,7 +28,7 @@
 
 /*    Global Variables        */
 unsigned short milliseconds = 0; // millis function variable
-unsigned short microseconds = 0; // micros function variable
+unsigned long microseconds = 0; // micros function variable
 
 unsigned long microseconds_temp = 0;
 
@@ -102,6 +103,8 @@ void Timer_Init()
     TMR2CF    = 0x0A;
     RCAP2L    = 0x29;
     RCAP2H    = 0xFA;
+
+	Timer3_Init();
 }
 
 
@@ -259,17 +262,19 @@ void reset_Timer_1(void){
 
         Description:      returns microseconds passed
 --------------------------------------------------------------------------------------------------------------------*/
-unsigned short micros(void){
+unsigned long micros(void){
 	return(microseconds);
 }
 void delay_micro(unsigned int delay_len){
 	
-	unsigned short oldtime = micros(); 	//Store the current time
+	unsigned long oldtime = micros(); 	//Store the current time
 	while((micros()-oldtime)<delay_len); //wait for time to pass
 
 }
 
-
+void micros_RESET(void){
+	microseconds = 0;
+}
 
 
 
@@ -336,13 +341,4 @@ void InitialiseUART()
 }
 
 
-
-/***************************************** SERVO **************************************************/
-void servoWrite_microseconds(unsigned int time)
-{
-//	Servo_Ctrl = 1;
-	static unsigned int old_time = 0;
-	
-}
-	
 

@@ -15,6 +15,7 @@
 
 _______________________________________________________________________________________________________________________*/
 
+#include "Servo.h"
 #include "c8051f120.h"     // SFR declarations
 #include "A3_XX.h"
 #include "LCD.h"
@@ -40,6 +41,7 @@ void main(void)
 	{	
 		LD1 = ~LD1;
 		delay_micro(100);
+		servoWrite_microseconds(1200);
 		// Do stuff
 
 	}
@@ -55,10 +57,12 @@ void General_Init()
 	WDTCN = 0xde;
 	WDTCN = 0xad;
   	SFRPAGE = CONFIG_PAGE;
-	P0MDOUT = 0x10;		// NOTE: Pushpull required for Servo control OTHERWISE TOO WEAK TO DRIVE PROPERLY SINCE ONLY 3.3V!!!!
+	P0MDOUT = 0x11;		// NOTE: Pushpull required for Servo control OTHERWISE TOO WEAK TO DRIVE PROPERLY SINCE ONLY 3.3V!!!!
 	P1MDOUT = 0x00;		// Ensure not pushpull outputs....this could damage microcontroller...
 	P2MDOUT = 0xff;		// Need to make pushpull outputs to drive LEDs properly
+	XBR0      = 0x08;
 	XBR2 = 0x40;
+
 	Servo_Ctrl = 0;	// Initialise servo control pin to 0
 }
 
