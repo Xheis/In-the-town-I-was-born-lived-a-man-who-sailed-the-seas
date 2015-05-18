@@ -18,3 +18,5 @@ tmp.out
 *.lnp
 *.M51
 8051/Methods.__i
+*.htm
+*.student

@@ -26,7 +26,8 @@
 
 
 /*    Global Variables        */
-unsigned short milliseconds = 0;
+unsigned short milliseconds = 0; // millis function variable
+unsigned short microseconds = 0; // micros function variable
 
 //--------------------------------------------------------------------------------------------------------------------
 //                              Functions & Methods
@@ -89,7 +90,9 @@ void Timer_Init()
     TCON      = 0x40;
     TMOD      = 0x11;
     CKCON     = 0x02;
-
+	TL1       = 0x9E;
+    TH1       = 0xFF;
+	
 	reset_Timer_0();
 
 	/* Timer 2 */
@@ -217,6 +220,59 @@ void millis_RESET(void){
 
 
 
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------
+        Function:         update_micros()
+
+        Description:      Interrupt for a microsecond timer
+--------------------------------------------------------------------------------------------------------------------*/
+/* Interrupt for a millisecond timer */
+void update_micros(void) interrupt 3
+{
+	microseconds++;
+	reset_Timer_1();
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------
+        Function:         Reset Timer 1
+
+        Description:      Resets and starts timer 0 for use in the millis function
+--------------------------------------------------------------------------------------------------------------------*/
+void reset_Timer_1(void){
+	TF0 			= 0;  		/* Clear flag */
+	TL0       = 0x9E;		/* Top up for a 1 microsecond delay */
+  TH0       = 0xFF;
+	TR0 			= 1; 			/* Enable Timer */
+}
+
+/*--------------------------------------------------------------------------------------------------------------------
+        Function:         micros
+
+        Description:      returns microseconds passed
+--------------------------------------------------------------------------------------------------------------------*/
+unsigned short micros(void){
+	return(microseconds);
+}
+void delay_micro(unsigned int delay_len){
+	
+	unsigned short oldtime = micros(); 	//Store the current time
+	while((micros()-oldtime)<delay_len); //wait for time to pass
+}
+
+
+
+
+
+
+
+
+
+
 /*--------------------------------------------------------------------------------------------------------------------
         Function:         PulseGeneration()
 
@@ -265,7 +321,7 @@ void SendUltrasonicTimes(int tempTime)
 	// tempTime
 }
 
-void InitialiseUART
+void InitialiseUART()
 {
 	//Vector is 0x0023 for UART
 	TI0 = 0x00; //This is our transmission complete interrupt.
