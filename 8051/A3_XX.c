@@ -15,7 +15,7 @@
 
 _______________________________________________________________________________________________________________________*/
 
-#include <c8051f120.h>     // SFR declarations
+#include "c8051f120.h"     // SFR declarations
 #include "A3_XX.h"
 #include "LCD.h"
 #include "Methods.h"
@@ -30,16 +30,18 @@ ________________________________________________________________________________
 --------------------------------------------------------------------------------------------------------------------*/
 void main(void)
 {
-  SFRPAGE   = CONFIG_PAGE;
-  OSCICN    = 0x83;					// Need a faster clock....24.5MHz selected
+  Oscillator_Init();
 	General_Init();
 	Timer_Init();
-	LCD_Init();	
+	//LCD_Init();	
 	Interrupts_Init();	
 
 	while(1)
 	{	
+		LD1 = ~LD1;
+		delay_micro(100);
 		// Do stuff
+
 	}
 }
 

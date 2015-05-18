@@ -30,14 +30,14 @@ sbit PB8 = P1 ^ 7;                           // Pushbuttom PB8
 
 sbit SMODE = P3 ^ 7;												// Pushbutton on F120 development board
 
-sbit LD0 = P2 ^ 0;                         // LD0   
-sbit LD1 = P2 ^ 1;                         // LD1
-sbit LD2 = P2 ^ 2;                         // LD2
-sbit LD3 = P2 ^ 3;                         // LD3  
-sbit LD4 = P2 ^ 4;                         // LD4   
-sbit LD5 = P2 ^ 5;                         // LD5
-sbit LD6 = P2 ^ 6;                         // LD6
-sbit LD7 = P2 ^ 7;                         // LD7    
+sbit LD1 = P2 ^ 0;                         // LD0   
+sbit LD2 = P2 ^ 1;                         // LD1
+sbit LD3 = P2 ^ 2;                         // LD2
+sbit LD4 = P2 ^ 3;                         // LD3  
+sbit LD5 = P2 ^ 4;                         // LD4   
+sbit LD6 = P2 ^ 5;                         // LD5
+sbit LD7 = P2 ^ 6;                         // LD6
+sbit LD8 = P2 ^ 7;                         // LD7    
 
 
 sfr	 LCD = 0xB0;

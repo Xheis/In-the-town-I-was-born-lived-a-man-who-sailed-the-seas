@@ -29,6 +29,8 @@
 unsigned short milliseconds = 0; // millis function variable
 unsigned short microseconds = 0; // micros function variable
 
+unsigned long microseconds_temp = 0;
+
 //--------------------------------------------------------------------------------------------------------------------
 //                              Functions & Methods
 //--------------------------------------------------------------------------------------------------------------------
@@ -87,14 +89,13 @@ void Timer_Init()
 {
 	/* Timer 1 and Timer 0 are setup */
 	SFRPAGE   = TIMER01_PAGE;
-    TCON      = 0x40;
+	TCON      = 0x50;
     TMOD      = 0x11;
-    CKCON     = 0x02;
-	TL1       = 0x9E;
-    TH1       = 0xFF;
+    CKCON     = 0x12;
+    
 	
 	reset_Timer_0();
-
+	reset_Timer_1();
 	/* Timer 2 */
     SFRPAGE   = TMR2_PAGE; /* 2^14 sample rate */
     TMR2CN    = 0x04;
@@ -130,8 +131,9 @@ void Interrupts_Init()
 {
 		IE = 0x0; 		//Clear the register 
 		EA = 1; 		// Enable global interupts
-		ET2 = 1;		// Enable timer2 interrupt 
+		//ET2 = 1;		// Enable timer2 interrupt 
 		ET0 = 1;		// Enable timer0 interrupt 
+		ET1 = 1;
 }
 
 
@@ -183,6 +185,7 @@ void delay(unsigned short delay_len){
 void update_millis(void) interrupt 1
 {
 	milliseconds++;
+	
 	reset_Timer_0();
 }
 
@@ -194,7 +197,7 @@ void update_millis(void) interrupt 1
 void reset_Timer_0(void){
 	TF0 			= 0;  		/* Clear flag */
 	TL0       		= 0x06;		/* Top up for a 1 millisecond delay */
-  TH0       		= 0xF8;
+  	TH0       		= 0xF8;
 	TR0 			= 1; 		/* Enable Timer */
 }
 
@@ -233,6 +236,7 @@ void millis_RESET(void){
 void update_micros(void) interrupt 3
 {
 	microseconds++;
+	//microseconds_temp;
 	reset_Timer_1();
 }
 
@@ -244,10 +248,10 @@ void update_micros(void) interrupt 3
         Description:      Resets and starts timer 0 for use in the millis function
 --------------------------------------------------------------------------------------------------------------------*/
 void reset_Timer_1(void){
-	TF0 			= 0;  		/* Clear flag */
-	TL0       = 0x9E;		/* Top up for a 1 microsecond delay */
-  TH0       = 0xFF;
-	TR0 			= 1; 			/* Enable Timer */
+	TF1 			= 0;  		/* Clear flag */
+	TL1       		= 0x9E;		/* Top up for a 1 microsecond delay */
+	TH1      		= 0xFF;
+	TR1 			= 1; 			/* Enable Timer */
 }
 
 /*--------------------------------------------------------------------------------------------------------------------
@@ -262,6 +266,7 @@ void delay_micro(unsigned int delay_len){
 	
 	unsigned short oldtime = micros(); 	//Store the current time
 	while((micros()-oldtime)<delay_len); //wait for time to pass
+
 }
 
 
@@ -327,5 +332,17 @@ void InitialiseUART()
 	TI0 = 0x00; //This is our transmission complete interrupt.
 	RI0 = 0x00; //This is our receive complete interrupt, which we need.
 	/* NOTE: The software interrupts are not reset by hardware, so we must reset them manually. */
-	SCON0 = 0x
+	SCON0 = 0x0;
 }
+
+
+
+/***************************************** SERVO **************************************************/
+void servoWrite_microseconds(unsigned int time)
+{
+//	Servo_Ctrl = 1;
+	static unsigned int old_time = 0;
+	
+}
+	
+
